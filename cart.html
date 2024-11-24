@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Belanja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 style="font-family: Palatino;">Luca Florist - Keranjang</h1>
+        </div>
+    </header>
+
+    <section class="cart-section">
+        <h2>Keranjang Belanja Anda</h2>
+
+        <!-- Bagian untuk menampilkan produk -->
+        <div id="cartItemsContainer"></div>
+
+        <div class="total">
+            <h3>Total: <span id="totalPrice">Rp0,00</span></h3>
+        </div>
+
+        <!-- Tombol untuk memilih metode pembayaran -->
+        <div class="payment-method">
+            <h3>Pilih Metode Pembayaran:</h3>
+            <button class="payment-button" onclick="choosePaymentMethod('E-Wallet')">E-Wallet</button>
+            <button class="payment-button" onclick="choosePaymentMethod('Bank Transfer')">Bank Transfer</button>
+        </div>
+
+        <!-- Input untuk unggah bukti pembayaran -->
+        <div class="payment-proof" id="paymentProofContainer" style="display: none;">
+            <h3>Unggah Bukti Pembayaran:</h3>
+            <input type="file" id="paymentProof" accept="image/*,application/pdf">
+            <button onclick="submitProof()">Kirim Bukti Pembayaran</button>
+        </div>
+
+        <button class="buy-button" onclick="buyNow()">Beli Sekarang</button>
+        <button class="back-button" onclick="window.location.href='index.html'">Kembali ke Beranda</button>
+    </section>
+
+    <script>
+        // Hapus localStorage untuk debugging
+        //localStorage.removeItem('cart');  // Ini akan reset keranjang
+
+        let total = 0; // Inisialisasi total
+
+       // Fungsi untuk menghitung total
+    function updateTotal() {
+        document.getElementById('totalPrice').textContent = `Rp${total.toLocaleString()},00`;
+    }
+
+    // Fungsi untuk menambahkan item ke localStorage
+    function addToCart(itemName, itemPrice) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Buat objek produk baru
+    let item = {
+        id: cart.length + 1, // ID unik berdasarkan panjang keranjang
+        name: itemName,
+        price: itemPrice
+    };
+
+    // Tambahkan produk ke array cart
+    cart.push(item);
+
+    // Simpan kembali ke localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Tambahkan langsung ke tampilan keranjang
+    addItemToCart(item.id, item.name, item.price);
+
+    alert(`${itemName} berhasil ditambahkan ke keranjang!`);
+    }
+
+    // Fungsi untuk menampilkan item di keranjang
+    function addItemToCart(itemId, itemName, itemPrice) {
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+
+        // Buat elemen baru untuk item keranjang
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.id = itemId;
+
+        cartItem.innerHTML = `
+            <div class="cart-item-details">
+                <h3>${itemName}</h3>
+                <p class="price">Rp${itemPrice.toLocaleString()}</p>
+                <button class="delete-button" onclick="removeItem('${itemId}', ${itemPrice})">Hapus</button>
+            </div>
+        `;
+
+        cartItemsContainer.appendChild(cartItem);
+        total += itemPrice;
+        updateTotal();
+    }
+
+
+        // Fungsi untuk menghapus item
+        function removeItem(itemId, price) {
+            const item = document.getElementById(itemId);
+            if (item) {
+                item.remove();
+                total -= price;
+                updateTotal();
+                alert('Item telah dihapus dari keranjang.');
+            }
+        }
+
+        function buyNow() {
+            alert('Terima kasih telah melakukan pembelian!');
+        }
+
+        function choosePaymentMethod(method) {
+    alert(`Anda memilih metode pembayaran: ${method}`);
+    document.getElementById('paymentProofContainer').style.display = 'block';
+}
+
+function submitProof() {
+    const fileInput = document.getElementById('paymentProof');
+    if (fileInput.files.length > 0) {
+        alert('Bukti pembayaran berhasil dikirim!');
+    } else {
+        alert('Silakan unggah bukti pembayaran terlebih dahulu.');
+    }
+}
+
+
+        // Memuat item keranjang dari localStorage
+       function loadCartItems() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.forEach(item => {
+        addItemToCart(item.id, item.name, item.price);
+    });
+
+        }
+
+      document.addEventListener("DOMContentLoaded", function () {
+    loadCartItems(); // Memuat item dari localStorage saat halaman dimuat
+        });
+    </script>
+</body>
+</html>

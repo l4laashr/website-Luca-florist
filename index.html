@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Luca Florist</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+    header {
+    position: fixed; /* Posisi tetap untuk header */
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white; /* Warna latar belakang header */
+    z-index: 1000; /* Memastikan header tetap di atas konten lain */
+    padding: 10px 0; /* Padding untuk estetika */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk kedalaman */
+}
+    section {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fafad2;
+    padding-top: 80px; /* Ruang untuk header tetap */
+}
+
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; /* Untuk meratakan produk dalam baris */
+    }
+    .product-item {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: calc(20% - 20px); /* Mengatur lebar produk agar ada 5 produk dalam satu baris, dengan margin */
+        text-align: center;
+        margin: 10px 0; /* Margin vertikal untuk spasi antara baris */
+    }
+    .product-image {
+        width: 150px; /* Ukuran gambar produk lebih kecil */
+        height: auto;
+        border-radius: 10px;
+    }
+    .buy-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: pink; /* Warna latar belakang pink */
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .buy-button:hover {
+        background-color: #ff69b4; /* Warna pink lebih gelap saat hover */
+    }
+</style>
+
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>Luca Florist</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about" class="nav-button">About Us</a></li>
+                <li><a href="#products" class="nav-button">Our Products</a></li>
+                <li><a href="#contact" class="nav-button">Contact Us</a></li>
+                <!-- Tombol untuk menuju halaman keranjang -->
+                <li><a href="#cart" class="nav-button">Keranjang</a></li>
+
+            </ul>
+        </nav>
+
+    </header>
+
+    <section id="about">
+    <div class="about-banner">
+        <img src="bannerluca.png" alt="bannerluca">
+    </div>
+    <h2>About Us</h2>
+    <p>Welcome to Luca Florist! Hanya yang segar, hanya yang terbaik. Kami menawarkan bunga-bunga fresh yang dipilih langsung dari sumbernya, siap menyempurnakan setiap momen spesial dalam hidup Anda. Temukan keindahan yang selalu fresh di setiap kelopak!<br/>
+        🌷 Rangkai Kebahagiaan
+        Biarkan bunga-bunga kami menambah keceriaan dalam hidup Anda. Dari hadiah sederhana hingga momen spesial, kami siap memenuhi semua kebutuhan Anda.<br/>
+
+       💐 Pilih dengan Cinta
+       Setiap bunga kami dipilih dengan penuh perhatian, memberikan Anda pilihan terbaik untuk menyampaikan pesan dari hati.<br/>
+
+    ✨ Segera Hadir di Depan Pintu Anda
+Jelajahi koleksi kami dan nikmati pengantaran cepat, agar setiap momen spesial Anda selalu diwarnai oleh keindahan segar dari Luca Florist!</p>
+</section>
+
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="product-gallery">
+            <div class="product-item">
+                <img src="mawar.jpg" alt="Flower 1">
+                <h3>Mawar</h3>
+                <p>Rp30.000</p>
+                <button class="buy-button" onclick="addToCart('Mawar', 30000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="matahari.jpg" alt="Flower 2">
+                <h3>Matahari</h3>
+                <p>Rp35.000</p>
+                <button class="buy-button" onclick="addToCart('Matahari', 35000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="tulip.png" alt="Flower 3">
+                <h3>Tulip</h3>
+                <p>Rp40.000</p>
+                <button class="buy-button" onclick="addToCart('Tulip', 40000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="daisy.png" alt="Flower 4">
+                <h3>Daisy</h3>
+                <p>Rp20.000</p>
+                <button class="buy-button" onclick="addToCart('Daisy', 20000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="gerbera.png" alt="Flower 5">
+                <h3>Gerbera</h3>
+                <p>Rp30.000</p>
+                <button class="buy-button" onclick="addToCart('Gerbera', 35000)">Tambah ke Keranjang</button>
+            </div>
+             <div class="product-gallery">
+            <div class="product-item">
+                <img src="Lily.jpg" alt="Flower 6">
+                <h3>Lily</h3>
+                <p>Rp30.000,00</p>
+                <button class="buy-button" onclick="addToCart('Lily', 30000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="krisan.jpg" alt="Flower 7">
+                <h3>Krisan</h3>
+                <p>Rp30.000</p>
+                <button class="buy-button" onclick="addToCart('Krisan', 30000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="peony.jpg" alt="Flower 8">
+                <h3>Peony</h3>
+                <p>Rp40.000</p>
+                <button class="buy-button" onclick="addToCart('Peony', 40000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="hortensia.jpg" alt="Flower 9">
+                <h3>Hortensia</h3>
+                <p>Rp45.000</p>
+                <button class="buy-button" onclick="addToCart('Hortensia', 45000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="anyelir.jpg" alt="Flower 10">
+                <h3>Anyelir</h3>
+                <p>Rp30.000</p>
+                <button class="buy-button" onclick="addToCart('Anyelir', 30000)">Tambah ke Keranjang</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="cart">
+    <h2>Keranjang Belanja</h2>
+    <div id="cart-items">
+        <p>Keranjang Anda kosong.</p>
+    </div>
+    <h3>Total: Rp<span id="cart-total">0</span></h3>
+    <!-- Tombol untuk memilih metode pembayaran -->
+        <div class="payment-method">
+            <h3>Pilih Metode Pembayaran:</h3>
+            <button class="payment-button" onclick="choosePaymentMethod('E-Wallet')">E-Wallet</button>
+            <button class="payment-button" onclick="choosePaymentMethod('Bank Transfer')">Bank Transfer</button>
+        </div>
+        <!-- Opsi E-Wallet yang akan muncul setelah memilih E-Wallet -->
+    <div id="ewallet-options" style="display: none;">
+        <h4>Pilih E-Wallet:</h4>
+        <button class="payment-option" onclick="selectEwallet('Dana')">Dana</button>
+        <button class="payment-option" onclick="selectEwallet('OVO')">OVO</button>
+        <button class="payment-option" onclick="selectEwallet('GoPay')">GoPay</button>
+    </div>
+
+    <!-- Opsi untuk Bukti Pembayaran -->
+    <div id="payment-proof" style="display: none;">
+        <h4>Upload Bukti Pembayaran:</h4>
+        <input type="file" id="proof-upload" accept="image/*,application/pdf" />
+        <button class="submit-proof-button" onclick="submitProof()">Kirim Bukti Pembayaran</button>
+    </div>
+</div>
+
+        
+    <button id="checkout-button" onclick="buyNow()">Checkout</button>
+
+</section>
+
+
+   <section id="contact">
+    <h2>Contact Us</h2>
+    
+    <form action="#">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Your Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-options">
+        <h3>Contact via WhatsApp</h3>
+        <p>Klik tombol ini untuk menghubungkan ke WhatsApp!</p>
+        <a href="https://wa.me/6285926848844" target="_blank" class="whatsapp-button">WhatsApp Us</a>
+    </div>
+
+    <div class="location">
+        <h3>Our Location</h3>
+        <p>Kamu bisa melihat lokasi toko kami di:</p>
+        <p>Fasilkom Universitas Sriwijaya, Bukit</p>
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31875.22209601651!2d104.7308028!3d-2.9856014!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b75ed9f44e9c5%3A0x30db735107f3611d!2sFasilkom%20Universitas%20Sriwijaya%20-%20Kampus%20Palembang!5e0!3m2!1sid!2sid!4v1727603257802!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+    <script>
+    // Fungsi untuk menambahkan produk ke keranjang
+    function addToCart(productName, price) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Buat ID produk yang unik (misalnya menggunakan nama produk)
+        const itemId = productName.replace(/\s+/g, '-').toLowerCase();
+
+        // Cek apakah produk sudah ada di keranjang
+        let productExist = cart.find(item => item.id === itemId);
+
+        if (productExist) {
+            // Jika produk sudah ada, hanya tambahkan jumlahnya
+            alert(productName + ' sudah ada di keranjang!');
+        } else {
+            // Jika produk belum ada, tambahkan produk baru
+            cart.push({ id: itemId, name: productName, price: price });
+            alert(productName + ' telah ditambahkan ke keranjang!');
+        }
+
+        // Simpan cart yang diperbarui ke localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Memperbarui tampilan keranjang
+        updateCart();
+    }
+
+    // Fungsi untuk memperbarui tampilan keranjang
+    function updateCart() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+
+        // Kosongkan isi keranjang sebelum memperbarui
+        cartItems.innerHTML = '';
+
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<p>Keranjang Anda kosong.</p>';
+            cartTotal.textContent = '0';
+            return;
+        }
+
+        let total = 0;
+        cart.forEach((item, index) => {
+            const itemElement = document.createElement('div');
+            itemElement.innerHTML = `
+                <p>${item.name} - Rp${item.price}</p>
+                <button class="remove-button" onclick="removeFromCart(${index})">Hapus</button>
+            `;
+            cartItems.appendChild(itemElement);
+            total += item.price;
+        });
+
+        cartTotal.textContent = total;
+    }
+
+    // Fungsi untuk menghapus produk dari keranjang
+    function removeFromCart(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1); // Hapus item dari keranjang berdasarkan indeks
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCart(); // Perbarui tampilan keranjang
+    }
+    function buyNow() {
+            alert('Terima kasih telah melakukan pembelian!');
+    }
+
+    function choosePaymentMethod(method) {
+    document.getElementById('paymentProofContainer').style.display = 'block';
+}
+
+ let selectedPaymentMethod = '';
+    let selectedEwallet = '';
+
+    // Fungsi untuk memilih metode pembayaran utama
+    function choosePaymentMethod(method) {
+        selectedPaymentMethod = method;
+
+        // Menampilkan pilihan E-Wallet atau Bank Transfer
+        if (method === 'E-Wallet') {
+            document.getElementById('ewallet-options').style.display = 'block';
+        } else {
+            document.getElementById('ewallet-options').style.display = 'none';
+        }
+        
+        // Menampilkan form bukti pembayaran setelah memilih metode pembayaran
+        if (method !== '') {
+            document.getElementById('payment-proof').style.display = 'block';
+        }
+    }
+
+    // Fungsi untuk memilih jenis E-Wallet
+    function selectEwallet(wallet) {
+        selectedEwallet = wallet;
+        selectedPaymentMethod = wallet; // Metode pembayaran sudah dipilih berdasarkan E-Wallet
+
+        // Menampilkan pilihan E-Wallet yang dipilih
+        alert('Anda memilih pembayaran menggunakan ' + wallet);
+    }
+
+    // Fungsi untuk mengirim bukti pembayaran
+    function submitProof() {
+        const proofFile = document.getElementById('proof-upload').files[0];
+        
+        if (!proofFile) {
+            alert('Harap unggah bukti pembayaran.');
+        } else {
+            alert('Bukti pembayaran telah dikirim.');
+        }
+    }
+
+    // Fungsi checkout (dengan alert)
+    document.getElementById('checkout-button').addEventListener('click', function(e) {
+        e.preventDefault(); // Mencegah tindakan default pada tombol (jika ada)
+
+        // Memastikan metode pembayaran dipilih
+        if (!selectedPaymentMethod) {
+            alert('Harap pilih metode pembayaran!');
+            return;
+        }
+
+        // Menampilkan alert jika pilihan sudah lengkap
+        alert('Pembayaran Anda akan diproses menggunakan ' + selectedPaymentMethod);
+    });
+function submitProof() {
+    const fileInput = document.getElementById('paymentProof');
+    if (fileInput.files.length > 0) {
+        alert('Bukti pembayaran berhasil dikirim!');
+    } else {
+        alert('Silakan unggah bukti pembayaran terlebih dahulu.');
+    }
+}
+
+    // Panggil updateCart() setiap kali halaman dimuat untuk memperbarui keranjang
+    document.addEventListener('DOMContentLoaded', updateCart);
+
+    document.querySelectorAll('.nav-button').forEach(button => {
+    button.addEventListener('click', function (event) {
+        event.preventDefault(); // Mencegah navigasi default
+        const sectionId = this.getAttribute('href'); // Ambil target ID
+        document.querySelector(sectionId).scrollIntoView({
+            behavior: 'smooth', // Scroll halus
+            block: 'start' // Mulai scroll dari awal elemen
+        });
+    });
+});
+
+</script>
+
+    </div>
+</section>
+</body>
+</html>
